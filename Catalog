@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Catalog</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2;
+    --card: #ffffff;
+    --ink: #1c1c1a;
+    --muted: #6b6a66;
+    --line: #e3e1db;
+    --accent: #1f4d3a;
+    --accent-soft: #f0f5f2;
+    --error: #b3261e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 560px;
+    overflow: hidden;
+  }
+  .content { padding: 36px 36px 40px; }
+  .hero {
+    aspect-ratio: 7 / 2;
+    background: #e9e7e1;
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    font-size: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .logo { height: 48px; margin-bottom: 28px; display: flex; align-items: center; font-weight: 700; font-size: 18px; letter-spacing: .02em; }
+  .logo img { height: 48px; width: auto; }
+  h1 { font-size: 26px; line-height: 1.25; margin: 0 0 10px; }
+  p.lead { color: var(--muted); margin: 0 0 28px; line-height: 1.55; }
+  .section-label { font-size: 12px; font-weight: 600; margin: 0 0 10px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+  .options { display: grid; gap: 10px; margin-bottom: 28px; }
+  .opt {
+    display: flex; align-items: center; gap: 12px;
+    border: 1.5px solid var(--line); border-radius: 10px;
+    padding: 13px 16px; cursor: pointer; font-weight: 500;
+    transition: border-color .15s, background .15s;
+  }
+  .opt:hover { border-color: #c9c6bd; }
+  .opt input { accent-color: var(--accent); width: 18px; height: 18px; margin: 0; }
+  .opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .opt small { display: block; color: var(--muted); font-weight: 400; font-size: 13px; margin-top: 2px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+  .full { grid-column: 1 / -1; }
+  .field label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .field label span { color: var(--muted); font-weight: 400; }
+  .field input {
+    width: 100%; font: inherit; font-size: 15px;
+    border: 1.5px solid var(--line); border-radius: 10px;
+    padding: 11px 13px; background: #fff; color: var(--ink);
+  }
+  .field input:focus { outline: none; border-color: var(--accent); }
+  .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 22px; }
+  .consent input { accent-color: var(--accent); margin-top: 3px; }
+  button, .btn {
+    display: block; width: 100%; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; text-align: center; text-decoration: none;
+    font: inherit; font-weight: 600; font-size: 16px; padding: 15px; cursor: pointer;
+  }
+  button:disabled { opacity: .5; cursor: wait; }
+  .error { color: var(--error); font-size: 14px; margin: 0 0 14px; min-height: 1em; }
+  .done { display: none; text-align: center; }
+  .done .check { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 28px; display: grid; place-items: center; margin: 0 auto 18px; }
+  .done p { color: var(--muted); line-height: 1.55; margin: 0 0 24px; }
+  @media (max-width: 480px) {
+    .content { padding: 26px 20px 30px; }
+    h1 { font-size: 22px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main class="card">
+  <header class="hero">
+    <!-- Replace the text below with: <img src="HEADER_IMAGE_URL" alt="Our products"> (recommended size 1120×320) -->
+    Header image · 1120 × 320
+  </header>
+
+  <div class="content">
+  <div class="logo">
+    <!-- Replace with: <img src="LOGO_URL" alt="Company name"> -->
+    COMPANY NAME
+  </div>
+
+  <form id="form" novalidate>
+    <h1>Download our product catalog</h1>
+    <p class="lead">Tell us a bit about your business and get the catalog with the range and terms tailored to you.</p>
+
+    <p class="section-label">Your business type</p>
+    <div class="options">
+      <label class="opt"><input type="radio" name="category" value="Retail chain" required>
+        <span>Retail chain<small>Supermarkets and multi-store networks</small></span></label>
+      <label class="opt"><input type="radio" name="category" value="Ethnic retail">
+        <span>Ethnic retail<small>Specialty and ethnic food stores</small></span></label>
+      <label class="opt"><input type="radio" name="category" value="Distributor">
+        <span>Distributor<small>Wholesale and import partners</small></span></label>
+    </div>
+
+    <p class="section-label">Your details</p>
+    <div class="grid">
+      <div class="field"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization" required></div>
+      <div class="field"><label for="email">Business email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="phone">Phone <span>(optional)</span></label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+      <div class="field full"><label for="country">Country</label><input id="country" name="country" autocomplete="country-name" required></div>
+    </div>
+
+    <label class="consent"><input type="checkbox" name="consent" required>
+      <span>I agree that COMPANY NAME may store my details and contact me about its products. <!-- add link to privacy policy --></span></label>
+
+    <p class="error" id="error"></p>
+    <button type="submit" id="submit">Get the catalog</button>
+  </form>
+
+  <div class="done" id="done">
+    <div class="check">✓</div>
+    <h1>Thank you!</h1>
+    <p>Your catalog is ready. Our team will be in touch shortly.</p>
+    <a class="btn" id="download" href="#" target="_blank" rel="noopener">Download catalog (PDF)</a>
+  </div>
+  </div>
+</main>
+
+<script>
+  // 1) Google Drive share link for each catalog
+  const CATALOGS = {
+    "Retail chain":  "https://drive.google.com/RETAIL_CHAIN_LINK",
+    "Ethnic retail": "https://drive.google.com/ETHNIC_RETAIL_LINK",
+    "Distributor":   "https://drive.google.com/DISTRIBUTOR_LINK"
+  };
+  // 2) Apps Script web app URL that writes leads to Google Sheets
+  const LEADS_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+
+  const form = document.getElementById("form");
+  const errorEl = document.getElementById("error");
+  const submitBtn = document.getElementById("submit");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorEl.textContent = "";
+
+    const data = Object.fromEntries(new FormData(form));
+    if (!data.category) return (errorEl.textContent = "Please select your business type.");
+    if (!form.checkValidity()) {
+      const bad = form.querySelector(":invalid");
+      errorEl.textContent = bad.type === "checkbox" ? "Please accept the consent to continue."
+        : bad.type === "email" && bad.value ? "Please enter a valid email."
+        : "Please fill in all required fields.";
+      bad.focus();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+    try {
+      await fetch(LEADS_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: new URLSearchParams({ ...data, page: location.href })
+      });
+    } catch (err) {
+      // Lead not saved (network issue) — still give the catalog
+      console.warn(err);
+    }
+
+    document.getElementById("download").href = CATALOGS[data.category];
+    form.style.display = "none";
+    document.getElementById("done").style.display = "block";
+  });
+</script>
+</body>
+</html>
